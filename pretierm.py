@@ -32,8 +32,6 @@ def INIT_PRETIERM():
     dwMode.value |= 0x0004
     kernel32.SetConsoleMode(hConsole, dwMode)
 
-INIT_PRETIERM()
-
 def clear_screen():
  print("\033[2J\033[H",end="")
 
