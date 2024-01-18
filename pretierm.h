@@ -91,6 +91,8 @@ std::vector<std::vector<std::string>>styles=
 {"┌","┐","└","┘","│","─"},
 {"╭","╮","╰","╯","│","─"},
 {"┏","┓","┗","┛","┃","━"},
+
+//THE UGLY ONE
 {"/","\\","\\","/","|","-"},
 };
 
@@ -157,7 +159,7 @@ styles=
 {"[","/"," ","]"},
 };
 set_cursor_pos(x,y);
-float half=((bar_size*0.01)*perscentage);
+float half=x+((bar_size*0.01)*perscentage);
 std::cout<<styles[selected_style][0];
 for (unsigned short i = x; i < bar_size; ++i)
 {
@@ -191,7 +193,31 @@ draw_line(x1,y1,x2,y2,fill);
 draw_line(x2,y2,x0,y0,fill);
 }
 
+void draw_list(int x,int y,std::vector<std::string>list,int selected_style)
+{
+std::vector<std::vector<std::string>>
+styles=
+{
+    {"╔","╚","╠"},
+    {"┌","└","├"},
+    {"╭","╰","├"},
+};
+    for (unsigned short i = 0; i < list.size(); i++)
+    {
+    set_cursor_pos(x,y+i);
+    if (i==0)
+    {std::cout<<styles[selected_style][0]<<list[i];}
+     else if (i==list.size()-1)
+     {std::cout<<styles[selected_style][2]<<list[i];}
+     else 
+     {std::cout<<styles[selected_style][1]<<list[i];}
+    }
+
+
 }
+
+}
+
 
  }
 }
