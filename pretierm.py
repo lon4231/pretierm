@@ -101,5 +101,3 @@ def draw_line_graff(x,y,bar_size,persentages,fill):
   for n in range(bar_size,int(bar_size-(bar_size*0.01)*persentages[i]),-1):
    set_cursor_pos(x+i,y+n)
    print(fill,end="")
-
-clear_screen()
