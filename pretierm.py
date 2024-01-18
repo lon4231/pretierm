@@ -1,3 +1,17 @@
+#                                █████     ███                                     
+#                               ░░███     ░░░                                      
+#  ████████  ████████   ██████  ███████   ████   ██████  ████████  █████████████   
+# ░░███░░███░░███░░███ ███░░███░░░███░   ░░███  ███░░███░░███░░███░░███░░███░░███  
+#  ░███ ░███ ░███ ░░░ ░███████   ░███     ░███ ░███████  ░███ ░░░  ░███ ░███ ░███  
+#  ░███ ░███ ░███     ░███░░░    ░███ ███ ░███ ░███░░░   ░███      ░███ ░███ ░███  
+#  ░███████  █████    ░░██████   ░░█████  █████░░██████  █████     █████░███ █████ 
+#  ░███░░░  ░░░░░      ░░░░░░     ░░░░░  ░░░░░  ░░░░░░  ░░░░░     ░░░░░ ░░░ ░░░░░  
+#  ░███                                                                            
+#  █████                                                                           
+# ░░░░░                                                                            
+#provided by leon zabalegui
+
+
 import ctypes,os
 from ctypes import wintypes
 
@@ -18,6 +32,7 @@ def INIT_PRETIERM():
     dwMode.value |= 0x0004
     kernel32.SetConsoleMode(hConsole, dwMode)
 
+INIT_PRETIERM()
 
 def clear_screen():
  print("\033[2J\033[H",end="")
@@ -101,3 +116,9 @@ def draw_line_graff(x,y,bar_size,persentages,fill):
   for n in range(bar_size,int(bar_size-(bar_size*0.01)*persentages[i]),-1):
    set_cursor_pos(x+i,y+n)
    print(fill,end="")
+
+
+def draw_triangle(x0,y0,x1,y1,x2,y2,fill):
+ draw_line(x0,y0,x1,y1,fill)
+ draw_line(x1,y1,x2,y2,fill)
+ draw_line(x2,y2,x0,y0,fill)
