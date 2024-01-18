@@ -32,6 +32,8 @@ def INIT_PRETIERM():
     dwMode.value |= 0x0004
     kernel32.SetConsoleMode(hConsole, dwMode)
 
+INIT_PRETIERM()
+
 def clear_screen():
  print("\033[2J\033[H",end="")
 
@@ -54,6 +56,8 @@ def draw_box(x0,y0,x1,y1,selected_style):
    ["┌","┐","└","┘","│","─"],
    ["╭","╮","╰","╯","│","─"],
    ["┏","┓","┗","┛","┃","━"],
+
+   #THE UGLY ONE
    ["/","\\","\\","/","|","-"]
  ]
  set_cursor_pos(x0,y0)
@@ -120,3 +124,21 @@ def draw_triangle(x0,y0,x1,y1,x2,y2,fill):
  draw_line(x0,y0,x1,y1,fill)
  draw_line(x1,y1,x2,y2,fill)
  draw_line(x2,y2,x0,y0,fill)
+
+def draw_list(x,y,list_strings,selected_style):
+ styles=[
+  ["╔","╚","╠"],
+  ["┌","└","├"],
+  ["╭","╰","├"],
+  
+  #THE UGLY ONE
+  ["/-","\\-","|-"]
+ ]
+ for i in range(len(list_strings)):
+  set_cursor_pos(x,y+i)
+  if i==0:
+   print(styles[selected_style][0]+str(list_strings[i]),end="")
+  elif i==len(list_strings)-1:
+   print(styles[selected_style][1]+str(list_strings[i]),end="")
+  else:
+   print(styles[selected_style][2]+str(list_strings[i]),end="")
