@@ -1,3 +1,6 @@
+#pragma once
+
+
 /*
                                 █████     ███                                     
                                ░░███     ░░░                                      
@@ -13,10 +16,6 @@
 
 #provided by leon zabalegui
 */
-
-
-
-#pragma once
 
 #include <iostream>
 #include <stdio.h>
@@ -54,17 +53,17 @@ void clear_screen()
 }
 void set_text_color(unsigned int r,unsigned int g,unsigned int b)
 {
- std::cout<<"\033[38;2;"<<r<<";"<<g<<";"<<b<<"m";
+    std::cout<<"\033[38;2;"<<r<<";"<<g<<";"<<b<<"m";
 }
 
 void set_back_color(unsigned int r,unsigned int g,unsigned int b)
 {
- std::cout<<"\033[48;2;"<<r<<";"<<g<<";"<<b<<"m";
+    std::cout<<"\033[48;2;"<<r<<";"<<g<<";"<<b<<"m";
 }
 
 void set_cursor_pos(int x,int y)
 {
-std::cout<<"\033["<<y+1<<";"<<x+1<<"H";
+    std::cout<<"\033["<<y+1<<";"<<x+1<<"H";
 }
 
 
@@ -219,12 +218,16 @@ std::vector<std::vector<std::string>>
 
 void draw_char_map(int x,int y,std::vector<std::string>map)
 {
-for (unsigned short i = 0; i < map.size(); i++)
-{
-set_cursor_pos(x,y+i);
-std::cout<<map[i];
-}
+    for (unsigned short i = 0; i < map.size(); i++)
+    {
+        set_cursor_pos(x,y+i);
+        std::cout<<map[i];
+    }
 }
 
+
+
 }
+
+
 
