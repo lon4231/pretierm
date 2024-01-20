@@ -142,3 +142,15 @@ def draw_list(x,y,list_strings,selected_style):
    print(styles[selected_style][1]+str(list_strings[i]),end="")
   else:
    print(styles[selected_style][2]+str(list_strings[i]),end="")
+
+
+def draw_char_map(x,y,map):
+ for i in range(len(map)):
+  set_cursor_pos(x,y+i)
+  print(map[i],end="")
+
+
+
+
+
+
