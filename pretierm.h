@@ -196,28 +196,35 @@ draw_line(x2,y2,x0,y0,fill);
 void draw_list(int x,int y,std::vector<std::string>list,int selected_style)
 {
 std::vector<std::vector<std::string>>
-styles=
-{
+  styles=
+   {
     {"╔","╚","╠"},
     {"┌","└","├"},
     {"╭","╰","├"},
-};
-    for (unsigned short i = 0; i < list.size(); i++)
+    {"/-","\\-","|-"}
+   };
+  for (unsigned short i = 0; i < list.size(); i++)
     {
-    set_cursor_pos(x,y+i);
-    if (i==0)
-    {std::cout<<styles[selected_style][0]<<list[i];}
+     set_cursor_pos(x,y+i);
+     if (i==0)
+      {std::cout<<styles[selected_style][0]<<list[i];}
      else if (i==list.size()-1)
-     {std::cout<<styles[selected_style][2]<<list[i];}
+      {std::cout<<styles[selected_style][1]<<list[i];}
      else 
-     {std::cout<<styles[selected_style][1]<<list[i];}
+      {std::cout<<styles[selected_style][2]<<list[i];}
     }
+}
 
 
+
+void draw_char_map(int x,int y,std::vector<std::string>map)
+{
+for (unsigned short i = 0; i < map.size(); i++)
+{
+set_cursor_pos(x,y+i);
+std::cout<<map[i];
+}
 }
 
 }
 
-
- }
-}
