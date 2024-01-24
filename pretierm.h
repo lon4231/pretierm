@@ -21,6 +21,9 @@
 #include <stdio.h>
 #include <vector>
 #include <string>
+#include <codecvt>
+#include <locale>
+
 
 #ifdef _WIN32
  #include<windows.h>
@@ -31,9 +34,9 @@ namespace pretierm
     
 
 
-#ifdef _WIN32
 void INIT_PRETIERM()
 {
+ #ifdef _WIN32
  SetConsoleOutputCP(CP_UTF8);
  SetConsoleCP(CP_UTF8);
  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -42,9 +45,22 @@ void INIT_PRETIERM()
  if (!GetConsoleMode(hConsole, &dwMode)){return;}
  dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
  if (!SetConsoleMode(hConsole, dwMode)){return;}
+ #endif
 
 }
-#endif
+
+void set_console_font( int fontSizeX, int fontSizeY,const wchar_t* fontName) {
+    CONSOLE_FONT_INFOEX fontInfo;
+    fontInfo.cbSize = sizeof(fontInfo);
+    fontInfo.nFont = 0;
+    fontInfo.dwFontSize.X = fontSizeX;
+    fontInfo.dwFontSize.Y = fontSizeY;
+    fontInfo.FontFamily = FF_DONTCARE;
+    fontInfo.FontWeight = FW_NORMAL;
+    wcscpy_s(fontInfo.FaceName, fontName);
+    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &fontInfo);
+}
+
 
 void clear_screen()
 {
@@ -225,9 +241,20 @@ void draw_char_map(int x,int y,std::vector<std::string>map)
     }
 }
 
-
-
+void draw_color_map(int x,int y,std::vector<std::vector<std::vector<int>>>map)
+{
+for (unsigned short i = 0; i < map.size()-1; i+=2)
+{
+ for (unsigned short n = 0; n < map[i].size(); ++n)
+ {
+  set_cursor_pos(x+n,y+(i/2));
+  set_back_color(map[i][n][0],map[i][n][1],map[i][n][2]);
+  set_text_color(map[i+1][n][0],map[i+1][n][1],map[i+1][n][2]);
+  std::cout<<"▄";
+ }   
+}
 }
 
 
 
+}
